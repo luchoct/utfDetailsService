@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE'
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '1.5.2.RELEASE'
+}
+
+group 'com.luchoct.utf'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = rootProject.name
+    version =  version
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+
+    // Actuator to monitor with Spring MVC. Not working with other REST libraries
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+
+    testCompile 'junit:junit'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.withType(JavaCompile) {
+    options.fork = true
+    options.incremental = true
+    options.encoding = "UTF-8"
+}
