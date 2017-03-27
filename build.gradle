@@ -29,7 +29,15 @@ repositories {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+test {
+    useJUnit {
+        excludeCategories 'com.luchoct.utf.junit.IntegrationTest'
+    }
+}
+
 dependencies {
+    compileOnly 'org.projectlombok:lombok:1.16.16'
+
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
@@ -37,6 +45,9 @@ dependencies {
 
     // Actuator to monitor with Spring MVC. Not working with other REST libraries
     compile 'org.springframework.boot:spring-boot-starter-actuator'
+
+    compile 'io.springfox:springfox-swagger2:2.4.0'
+    compile 'io.springfox:springfox-swagger-ui:2.4.0'
 
     testCompile 'junit:junit'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
