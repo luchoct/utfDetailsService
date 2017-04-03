@@ -9,6 +9,7 @@ buildscript {
 
 plugins {
     id 'org.springframework.boot' version '1.5.2.RELEASE'
+    id 'net.researchgate.release' version '2.4.0'
 }
 
 group 'com.luchoct.utf'
